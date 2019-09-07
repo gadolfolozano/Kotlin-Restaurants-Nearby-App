@@ -6,6 +6,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
 import javax.inject.Inject
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivitySplashBinding
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.main.MainActivity
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
 
@@ -22,5 +23,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        getViewDataBinding()?.buttonStart?.setOnClickListener{
+            val intent = MainActivity.newIntent(this@SplashActivity)
+            startActivity(intent)
+            finish()
+        }
     }
 }
