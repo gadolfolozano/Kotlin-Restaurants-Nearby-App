@@ -27,6 +27,8 @@ constructor(private val dataManager: DataManager) : BaseViewModel() {
         val restaurants = data?.nearbyRestaurants?.map {
             RestaurantMarker(
                 it.restaurant?.name,
+                it.restaurant?.thumb,
+                it.restaurant?.location?.address,
                 LatLng(
                     it.restaurant?.location?.latitude ?: 0.0,
                     it.restaurant?.location?.longitude ?: 0.0

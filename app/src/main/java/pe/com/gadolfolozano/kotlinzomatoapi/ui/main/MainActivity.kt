@@ -15,6 +15,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.State
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityMainBinding
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.util.RestaurantInfoWindow
 import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
 import javax.inject.Inject
 
@@ -46,7 +47,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
         mainViewModel.restaurantMarkers.observe(this,
             Observer { restaurantMarkes ->
                 restaurantMarkes.forEach {
-                    map.addMarker(MarkerOptions().position(it.latLng).title(it.name))
+                    val market = map.addMarker(MarkerOptions().position(it.latLng))
+                    market.tag = it
                 }
             })
     }
@@ -58,6 +60,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
             .target(MOUNTAIN_VIEW)
             .zoom(12f)
             .build()
+
+        map.setInfoWindowAdapter(RestaurantInfoWindow(this))
         map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
         map.setOnCameraIdleListener {
             loadNearbyRestaurants()
