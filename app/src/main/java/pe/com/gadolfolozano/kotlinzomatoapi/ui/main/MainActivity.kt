@@ -54,13 +54,19 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
     override fun onMapReady(googleMap: GoogleMap) {
         this.map = googleMap
 
-        map.addMarker(MarkerOptions().position(MOUNTAIN_VIEW).title("Mountain View"))
         val cameraPosition = CameraPosition.Builder()
             .target(MOUNTAIN_VIEW)
             .zoom(12f)
             .build()
         map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-        mainViewModel.obtainNearbyRestaurants(MOUNTAIN_VIEW.latitude, MOUNTAIN_VIEW.longitude)
+        map.setOnCameraIdleListener {
+            loadNearbyRestaurants()
+        }
+    }
+
+    private fun loadNearbyRestaurants() {
+        val centerPoint = map.projection.visibleRegion.latLngBounds.center
+        mainViewModel.obtainNearbyRestaurants(centerPoint.latitude, centerPoint.longitude)
             .observe(this, Observer { nearbyRestaurants ->
                 when (nearbyRestaurants.state?.status) {
                     State.STATE_LOADING -> showLoading()
