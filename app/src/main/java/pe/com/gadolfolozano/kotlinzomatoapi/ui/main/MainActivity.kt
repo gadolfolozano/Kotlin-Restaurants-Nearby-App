@@ -3,6 +3,7 @@ package pe.com.gadolfolozano.kotlinzomatoapi.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
+import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.State
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityMainBinding
 import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
 import javax.inject.Inject
@@ -39,6 +41,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        mainViewModel.isLoading.value = true
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -50,6 +54,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
             .zoom(17f)
             .build()
         map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+        mainViewModel.obtainNearbyRestaurants(MOUNTAIN_VIEW.latitude, MOUNTAIN_VIEW.longitude)
+            .observe(this, Observer { nearbyRestaurants ->
+                when (nearbyRestaurants.state?.status) {
+                    State.STATE_LOADING -> showLoading()
+                    State.STATE_SUCCESS -> hideLoading()
+                    else -> hideLoading()
+                }
+            })
     }
 
     companion object {

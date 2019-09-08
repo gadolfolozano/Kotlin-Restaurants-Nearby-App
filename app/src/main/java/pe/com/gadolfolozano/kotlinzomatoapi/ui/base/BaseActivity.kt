@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import dagger.android.AndroidInjection
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.util.CommonUtils
 
@@ -34,6 +35,18 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
         performDependencyInjection()
         super.onCreate(savedInstanceState)
         performDataBinding()
+
+        observeLoading()
+    }
+
+    private fun observeLoading() {
+        viewModel.isLoading.observe(this, Observer { loading ->
+            if (loading) {
+                showLoading()
+            } else {
+                hideLoading()
+            }
+        })
     }
 
     fun hideKeyboard() {
