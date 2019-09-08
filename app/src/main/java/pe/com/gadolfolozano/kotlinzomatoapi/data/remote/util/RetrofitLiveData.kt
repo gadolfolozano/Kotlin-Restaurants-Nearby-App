@@ -23,6 +23,8 @@ class RetrofitLiveData<T>(private val call: Call<T>) : LiveData<StateData<T>>(),
     override fun onResponse(call: Call<T>, response: Response<T>) {
         if (response.body() != null) {
             value = stateData.success(response.body()!!)
+        } else {
+            value = stateData.error(Throwable())
         }
     }
 

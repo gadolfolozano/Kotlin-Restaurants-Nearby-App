@@ -78,6 +78,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
                         hideLoading()
                         mainViewModel.createMarkets(nearbyRestaurants.data)
                     }
+                    State.STATE_ERROR -> hideLoading()
                     else -> hideLoading()
                 }
             })

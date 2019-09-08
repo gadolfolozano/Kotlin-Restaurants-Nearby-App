@@ -3,4 +3,6 @@
 
     <string name="splash_welcome_title">¡Encuentra restaurantes cerca a ti!</string>
     <string name="splash_continue">Empezar</string>
+
+    <string name="main_disclaimer">¡Desplazate por el mapa para encontrar los mejores restaurantes cerca!</string>
 </resources>

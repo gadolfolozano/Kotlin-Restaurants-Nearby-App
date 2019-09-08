@@ -15,15 +15,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <TextView
+                android:text="@string/main_disclaimer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:textSize="18sp"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="48dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="48dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="48dp"/>
+
         <fragment
                 android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 tools:context=".ui.main.MainActivity"
-                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="100dp"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView2"
+                android:layout_marginTop="48dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
