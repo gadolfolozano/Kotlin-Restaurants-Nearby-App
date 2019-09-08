@@ -15,6 +15,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.State
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityMainBinding
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantMarker
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.util.RestaurantInfoWindow
 import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
 import javax.inject.Inject
@@ -66,6 +67,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
         map.setOnCameraIdleListener {
             loadNearbyRestaurants()
         }
+        map.setOnInfoWindowClickListener { marker ->
+            if (marker.tag is RestaurantMarker) {
+                loadRestaurantDetail(marker.tag as RestaurantMarker)
+            }
+        }
     }
 
     private fun loadNearbyRestaurants() {
@@ -78,7 +84,19 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
                         hideLoading()
                         mainViewModel.createMarkets(nearbyRestaurants.data)
                     }
-                    State.STATE_ERROR -> hideLoading()
+                    else -> hideLoading()
+                }
+            })
+    }
+
+    private fun loadRestaurantDetail(restaurantMarker: RestaurantMarker) {
+        mainViewModel.obtainRestaurantDetail(restaurantMarker.id ?: "")
+            .observe(this, Observer { response ->
+                when (response.state?.status) {
+                    State.STATE_LOADING -> showLoading()
+                    State.STATE_SUCCESS -> {
+                        hideLoading()
+                    }
                     else -> hideLoading()
                 }
             })

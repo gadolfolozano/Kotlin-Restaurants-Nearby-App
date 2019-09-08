@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import pe.com.gadolfolozano.kotlinzomatoapi.data.DataManager
 import pe.com.gadolfolozano.kotlinzomatoapi.data.remote.entity.NearbyRestaurantsResponse
+import pe.com.gadolfolozano.kotlinzomatoapi.data.remote.entity.RestaurantDetailResponse
 import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.StateData
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantMarker
 import pe.com.gadolfolozano.mymovie.ui.base.BaseViewModel
@@ -23,9 +24,16 @@ constructor(private val dataManager: DataManager) : BaseViewModel() {
         return dataManager.obtainNearbyRestaurants(latitude, longitude);
     }
 
+    fun obtainRestaurantDetail(
+        restaurantId: String
+    ): LiveData<StateData<RestaurantDetailResponse>> {
+        return dataManager.obtainRestaurantDetail(restaurantId);
+    }
+
     fun createMarkets(data: NearbyRestaurantsResponse?) {
         val restaurants = data?.nearbyRestaurants?.map {
             RestaurantMarker(
+                it.restaurant?.id,
                 it.restaurant?.name,
                 it.restaurant?.thumb,
                 it.restaurant?.location?.address,
