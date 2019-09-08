@@ -14,4 +14,7 @@ class RestaurantResponse {
     @SerializedName("thumb")
     var thumb: String? = null
 
+    @SerializedName("location")
+    var location: LocationResponse? = null
+
 }

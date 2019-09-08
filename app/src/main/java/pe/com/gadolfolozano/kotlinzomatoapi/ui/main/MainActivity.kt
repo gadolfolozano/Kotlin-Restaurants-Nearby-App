@@ -43,6 +43,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
         mapFragment.getMapAsync(this)
 
         mainViewModel.isLoading.value = true
+        mainViewModel.restaurantMarkers.observe(this,
+            Observer { restaurantMarkes ->
+                restaurantMarkes.forEach {
+                    map.addMarker(MarkerOptions().position(it.latLng).title(it.name))
+                }
+            })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -51,14 +57,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
         map.addMarker(MarkerOptions().position(MOUNTAIN_VIEW).title("Mountain View"))
         val cameraPosition = CameraPosition.Builder()
             .target(MOUNTAIN_VIEW)
-            .zoom(17f)
+            .zoom(12f)
             .build()
         map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
         mainViewModel.obtainNearbyRestaurants(MOUNTAIN_VIEW.latitude, MOUNTAIN_VIEW.longitude)
             .observe(this, Observer { nearbyRestaurants ->
                 when (nearbyRestaurants.state?.status) {
                     State.STATE_LOADING -> showLoading()
-                    State.STATE_SUCCESS -> hideLoading()
+                    State.STATE_SUCCESS -> {
+                        hideLoading()
+                        mainViewModel.createMarkets(nearbyRestaurants.data)
+                    }
                     else -> hideLoading()
                 }
             })
