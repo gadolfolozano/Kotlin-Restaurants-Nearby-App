@@ -7,6 +7,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.data.DataManager
 import pe.com.gadolfolozano.kotlinzomatoapi.data.remote.entity.NearbyRestaurantsResponse
 import pe.com.gadolfolozano.kotlinzomatoapi.data.remote.entity.RestaurantDetailResponse
 import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.StateData
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantDetailModel
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantMarker
 import pe.com.gadolfolozano.mymovie.ui.base.BaseViewModel
 
@@ -45,6 +46,16 @@ constructor(private val dataManager: DataManager) : BaseViewModel() {
         }
 
         restaurantMarkers.value = restaurants
+    }
+
+    fun transform(data: RestaurantDetailResponse?): RestaurantDetailModel {
+        return RestaurantDetailModel(
+            data?.id,
+            data?.name,
+            data?.location?.address,
+            data?.cuisines,
+            data?.highlights,
+            data?.photos?.map { it.photo?.url ?: "" })
     }
 
 }

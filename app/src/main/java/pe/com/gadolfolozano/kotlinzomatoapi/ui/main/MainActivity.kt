@@ -16,6 +16,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.State
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityMainBinding
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantMarker
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.restaurantdetail.RestaurantDetailActivity
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.util.RestaurantInfoWindow
 import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
 import javax.inject.Inject
@@ -79,12 +80,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
         mainViewModel.obtainNearbyRestaurants(centerPoint.latitude, centerPoint.longitude)
             .observe(this, Observer { nearbyRestaurants ->
                 when (nearbyRestaurants.state?.status) {
-                    State.STATE_LOADING -> showLoading()
                     State.STATE_SUCCESS -> {
-                        hideLoading()
+                        mainViewModel.isLoading.value = false
                         mainViewModel.createMarkets(nearbyRestaurants.data)
                     }
-                    else -> hideLoading()
+                    State.STATE_ERROR -> {
+                        mainViewModel.isLoading.value = false
+                    }
                 }
             })
     }
@@ -93,11 +95,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
         mainViewModel.obtainRestaurantDetail(restaurantMarker.id ?: "")
             .observe(this, Observer { response ->
                 when (response.state?.status) {
-                    State.STATE_LOADING -> showLoading()
+                    State.STATE_LOADING -> mainViewModel.isLoading.value = true
                     State.STATE_SUCCESS -> {
-                        hideLoading()
+                        mainViewModel.isLoading.value = false
+                        val intent = RestaurantDetailActivity
+                            .newIntent(
+                                this@MainActivity,
+                                mainViewModel.transform(response.data)
+                            )
+                        startActivity(intent)
                     }
-                    else -> hideLoading()
+                    else -> mainViewModel.isLoading.value = false
                 }
             })
     }

@@ -5,4 +5,6 @@
     <string name="splash_continue">Empezar</string>
 
     <string name="main_disclaimer">¡Desplazate por el mapa para encontrar los mejores restaurantes cerca!</string>
+
+    <string name="restaurant_cuisines">Tipo de Cocina:&#160;</string>
 </resources>
