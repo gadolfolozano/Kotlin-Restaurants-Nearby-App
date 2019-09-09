@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import pe.com.gadolfolozano.kotlinzomatoapi.R
@@ -41,7 +42,12 @@ class RestaurantInfoWindow(private val context: Context) : GoogleMap.InfoWindowA
 
             txtTitle.text = restaurantMarker?.name
             txtDetail.text = restaurantMarker?.address
-            Glide.with(context).load(restaurantMarker?.thumb).into(imgThumb)
+            if (restaurantMarker?.thumb != null) {
+                imgThumb.visibility = View.VISIBLE
+                Glide.with(context).load(restaurantMarker.thumb).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgThumb)
+            } else {
+                imgThumb.visibility = View.GONE
+            }
         }
 
         return view

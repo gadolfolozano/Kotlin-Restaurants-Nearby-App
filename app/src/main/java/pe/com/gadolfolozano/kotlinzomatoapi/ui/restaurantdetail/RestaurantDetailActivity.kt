@@ -3,7 +3,9 @@ package pe.com.gadolfolozano.kotlinzomatoapi.ui.restaurantdetail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.bumptech.glide.Glide
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityRestaurantDetailBinding
@@ -34,9 +36,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding, R
             getViewDataBinding()?.title?.text = it.name
             getViewDataBinding()?.subtitle?.text = it.address
             getViewDataBinding()?.cuisines?.text = it.cuisines
-            if (getViewDataBinding()?.imgRestaurant != null && it.photos != null && it.photos.isNotEmpty()) {
-                Glide.with(this).load(it.photos[0]).into(getViewDataBinding()!!.imgRestaurant)
-            }
+            getViewDataBinding()?.vpImages?.adapter = ImagePageAdapter(it.photos, supportFragmentManager)
         }
     }
 
@@ -47,6 +47,18 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding, R
             val intent = Intent(context, RestaurantDetailActivity::class.java)
             intent.putExtra(RESTAURANT_DETAIL_EXTRA, restaurantDetailModel)
             return intent
+        }
+    }
+
+    class ImagePageAdapter constructor(val images: List<String>?, fragmentManager: FragmentManager) :
+        FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+        override fun getCount(): Int {
+            return images?.size ?: 0
+        }
+
+        override fun getItem(position: Int): Fragment {
+            return RestaurantDetailImageFragment.newInstance(images?.get(position) ?: "")
         }
     }
 }
