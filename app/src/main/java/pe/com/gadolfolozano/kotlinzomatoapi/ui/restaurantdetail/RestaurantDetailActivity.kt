@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityRestaurantDetailBinding
@@ -37,6 +39,12 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding, R
             getViewDataBinding()?.subtitle?.text = it.address
             getViewDataBinding()?.cuisines?.text = it.cuisines
             getViewDataBinding()?.vpImages?.adapter = ImagePageAdapter(it.photos, supportFragmentManager)
+
+            if (it.highlights != null && it.highlights.isNotEmpty()) {
+                getViewDataBinding()?.recyclerView?.layoutManager =
+                    StaggeredGridLayoutManager(it.highlights.size / 2 + 1, LinearLayoutManager.HORIZONTAL)
+                getViewDataBinding()?.recyclerView?.adapter = HighlightAdapter(it.highlights)
+            }
         }
     }
 
