@@ -18,7 +18,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityMainBinding
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantMarker
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.restaurantdetail.RestaurantDetailActivity
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.util.RestaurantInfoWindow
-import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.base.BaseActivity
 import javax.inject.Inject
 
 

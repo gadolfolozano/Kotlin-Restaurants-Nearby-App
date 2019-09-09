@@ -3,7 +3,7 @@ package pe.com.gadolfolozano.kotlinzomatoapi.ui.splash
 import android.os.Bundle
 import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
-import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.base.BaseActivity
 import javax.inject.Inject
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivitySplashBinding
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.main.MainActivity

@@ -1,4 +1,4 @@
-package pe.com.gadolfolozano.mymovie.ui.base
+package pe.com.gadolfolozano.kotlinzomatoapi.ui.base
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -16,7 +16,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
 
     private var progressDialog: ProgressDialog? = null
     private var viewDataBinding: T? = null
-    private var viewModel1: V? = null
 
     abstract val bindingVariable: Int
 
@@ -78,8 +77,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
 
     private fun performDataBinding() {
         viewDataBinding = DataBindingUtil.setContentView(this, layoutId)
-        this.viewModel1 = if (viewModel1 == null) viewModel else viewModel1
-        viewDataBinding?.setVariable(bindingVariable, viewModel1)
+        viewDataBinding?.setVariable(bindingVariable, viewModel)
         viewDataBinding?.executePendingBindings()
     }
 }

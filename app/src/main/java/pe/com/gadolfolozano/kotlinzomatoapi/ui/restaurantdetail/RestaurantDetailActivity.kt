@@ -12,7 +12,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityRestaurantDetailBinding
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantDetailModel
-import pe.com.gadolfolozano.mymovie.ui.base.BaseActivity
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.base.BaseActivity
 import javax.inject.Inject
 
 class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding, RestaurantDetailViewModel>() {

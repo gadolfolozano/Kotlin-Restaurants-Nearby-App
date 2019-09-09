@@ -9,7 +9,7 @@ import pe.com.gadolfolozano.kotlinzomatoapi.data.remote.entity.RestaurantDetailR
 import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.StateData
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantDetailModel
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantMarker
-import pe.com.gadolfolozano.mymovie.ui.base.BaseViewModel
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.base.BaseViewModel
 
 import javax.inject.Inject
 

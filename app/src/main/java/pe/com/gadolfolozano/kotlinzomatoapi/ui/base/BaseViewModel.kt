@@ -1,4 +1,4 @@
-package pe.com.gadolfolozano.mymovie.ui.base
+package pe.com.gadolfolozano.kotlinzomatoapi.ui.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
