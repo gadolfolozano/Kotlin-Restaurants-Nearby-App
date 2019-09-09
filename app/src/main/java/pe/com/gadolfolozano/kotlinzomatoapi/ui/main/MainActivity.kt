@@ -15,16 +15,16 @@ import pe.com.gadolfolozano.kotlinzomatoapi.BR
 import pe.com.gadolfolozano.kotlinzomatoapi.R
 import pe.com.gadolfolozano.kotlinzomatoapi.data.wrapper.State
 import pe.com.gadolfolozano.kotlinzomatoapi.databinding.ActivityMainBinding
+import pe.com.gadolfolozano.kotlinzomatoapi.ui.base.BaseActivity
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.model.RestaurantMarker
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.restaurantdetail.RestaurantDetailActivity
 import pe.com.gadolfolozano.kotlinzomatoapi.ui.util.RestaurantInfoWindow
-import pe.com.gadolfolozano.kotlinzomatoapi.ui.base.BaseActivity
 import javax.inject.Inject
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapReadyCallback {
 
-    private val MOUNTAIN_VIEW = LatLng(37.4, -122.1)
+    private val MOUNTAIN_VIEW = LatLng(37.3916861111, -122.0802388889)
 
     @Inject
     lateinit var mainViewModel: MainViewModel
@@ -60,7 +60,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnMapRe
 
         val cameraPosition = CameraPosition.Builder()
             .target(MOUNTAIN_VIEW)
-            .zoom(12f)
+            .zoom(14f)
             .build()
 
         map.setInfoWindowAdapter(RestaurantInfoWindow(this))
