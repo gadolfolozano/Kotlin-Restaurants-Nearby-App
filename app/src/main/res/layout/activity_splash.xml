@@ -32,10 +32,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:background="@drawable/shape_rounded_border_accent"
             android:id="@+id/buttonStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@android:color/white"
             android:text="@string/splash_continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
