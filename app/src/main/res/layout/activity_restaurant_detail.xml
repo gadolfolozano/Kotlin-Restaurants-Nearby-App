@@ -1,103 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.">
 
     <data>
 
         <variable
-                name="viewModel"
-                type="pe.com.gadolfolozano.kotlinzomatoapi.ui.restaurantdetail.RestaurantDetailViewModel"/>
+            name="viewModel"
+            type="pe.com.gadolfolozano.kotlinzomatoapi.ui.restaurantdetail.RestaurantDetailViewModel" />
 
     </data>
 
     <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.viewpager.widget.ViewPager
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:id="@+id/vp_images" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+                android:id="@+id/vp_images"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/vp_images"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardCornerRadius="4dp"
-                    app:cardElevation="4dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp">
+                android:id="@+id/card_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vp_images">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
 
                     <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:id="@+id/title"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="32dp" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="32dp" app:layout_constraintHorizontal_bias="0.0"
-                            tools:text="Title"/>
+                        android:id="@+id/title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Title" />
+
                     <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textStyle="italic"
-                            android:id="@+id/subtitle" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/title"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="32dp" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="32dp" tools:text="subtitle"/>
+                        android:id="@+id/subtitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title"
+                        tools:text="subtitle" />
+
                     <TextView
-                            android:text="@string/restaurant_cuisines"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:id="@+id/textView5" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/subtitle"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="32dp"/>
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/restaurant_cuisines"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/subtitle" />
+
                     <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textStyle="italic"
-                            android:id="@+id/cuisines"
-                            app:layout_constraintStart_toEndOf="@+id/textView5"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="32dp" tools:text="Cuisines here"
-                            app:layout_constraintTop_toTopOf="@+id/textView5"
-                            app:layout_constraintBottom_toBottomOf="@+id/textView5"/>
+                        android:id="@+id/cuisines"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView5"
+                        app:layout_constraintTop_toTopOf="@+id/textView5"
+                        tools:text="Cuisines here" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <View
-                    android:layout_width="0dp"
-                    android:layout_height="12dp"
-                    app:layout_constraintTop_toBottomOf="@+id/card_view"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
+                android:layout_width="0dp"
+                android:layout_height="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
